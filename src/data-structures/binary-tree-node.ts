@@ -35,8 +35,22 @@ export class BinaryTreeNode<T> {
             }
         }
     }
-    
+
+    public toArray(): Array<T> {
+        let values: Array<T> = [];
+        if (this.a != null) {
+            values.push(...this.a.toArray());
+        }
+        values.push(this.value);
+
+        if (this.b != null) {
+            values.push(...this.b.toArray());
+        }
+
+        return values;
+    }
+
     public toString(): string {
-        return `${this.a}, ${this.value}, ${this.b}`;
+        return this.toArray().join(',');
     }
 }
