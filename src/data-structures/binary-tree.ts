@@ -17,22 +17,7 @@ export class BinaryTree<T> {
         }
         
         var values = this.root?.toArray();
-        var left = values.slice(0, Math.ceil(values.length / 2));
-        var right = values.slice(Math.ceil(values.length / 2));
-
-        var newRoot = new BinaryTreeNode<T>(left.pop()!);
-
-        while (left.length > 0 || right.length > 0) {
-            if(left.length > right.length)
-            {
-                newRoot.insert(left.pop()!);
-            }
-            else {
-                newRoot.insert(right.shift()!);
-            }
-        }
-
-        this.root = newRoot;
+        this.root = BinaryTreeNode.fromArray(values);
     }
 
     public getRoot(): BinaryTreeNode<T> | null {

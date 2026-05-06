@@ -23,6 +23,16 @@ test('Balance retains all elements', () => {
     expect(balancedValues).toEqual(unbalancedValues);
 })
 
+test('Balance reduces height to optimal height', () => {
+    const tree = createUnbalancedTree();
+    tree.insert(9);
+    tree.insert(11);
+
+    tree.balance();
+
+    let height = tree.getRoot()!.height();
+    expect(height).toBe(3);
+});
 
 function createUnbalancedTree(): BinaryTree<number> {
     const tree = new BinaryTree<number>();

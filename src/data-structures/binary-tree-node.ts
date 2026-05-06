@@ -8,6 +8,23 @@ export class BinaryTreeNode<T> {
         this.value = value;
     }
 
+    public static fromArray<T>(values: Array<T>) : BinaryTreeNode<T> {
+            let mid = Math.floor(values.length / 2);
+            let self = new BinaryTreeNode<T>(values[mid])
+            let left = values.slice(0, mid);
+            let right = values.slice(mid+1);
+
+            if(left.length) {
+                self.a = BinaryTreeNode.fromArray<T>(left);
+            }
+            
+            if(right.length) {
+                self.b = BinaryTreeNode.fromArray<T>(right);
+            }
+
+            return self;
+    }
+
     public getA(): BinaryTreeNode<T> | null {
         return this.a;
     }
@@ -52,5 +69,10 @@ export class BinaryTreeNode<T> {
 
     public toString(): string {
         return this.toArray().join(',');
+    }
+
+    public height(): number {
+        let childHeight = Math.max(this.a?.height() ?? 0, this.b?.height() ?? 0);
+        return childHeight + 1;
     }
 }
